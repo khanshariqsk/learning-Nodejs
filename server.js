@@ -7,17 +7,9 @@ const server = app.listen(8080,()=>{
 })
 const io = socketIO(server,{cors:{origin:"*"}});
 app.use(express.static(__dirname + "/public"))
-io.of('/').on("connection",(socket)=>{
-    console.log(socket.id)
-    // io.of('/').emit("welcome","emitted")
+io.on("connection",(socket)=>{
+    socket.join("level")
+    io.to("level").emit("joined","HelloJI")
 })
-io.of('/main').on("connection",(socket)=>{
-    console.log(socket.id)
-    io.of('/main').emit("mainCon","main")
-    // io.emit("mainCon","main")
-    io.of('/').emit("welcome","emitted")
 
-    
-
-})
 
