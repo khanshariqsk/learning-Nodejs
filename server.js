@@ -17,5 +17,9 @@ io.of('/').on("connection",(socket)=>{
    })
    socket.emit("nsData",nsData)
 })
-
+nameSpace.forEach(namespace=>{
+    io.of(namespace.endpoint).on("connection",(nsSocket)=>{
+        nsSocket.emit("roomData",nameSpace[0].rooms)
+    })
+})
 

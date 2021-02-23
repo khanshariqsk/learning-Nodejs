@@ -1,5 +1,5 @@
 const socket = io("http://localhost:8080")
-const socket2 = io("http://localhost:8080/main")
+const wikiSocket = io("http://localhost:8080/wiki")
 
 socket.on("nsData", (nsData) => {
     document.querySelector('.namespaces').innerHTML = "";
@@ -13,4 +13,8 @@ socket.on("nsData", (nsData) => {
             console.log(element.getAttribute('ns'))
         })
     })
+})
+
+wikiSocket.on("roomData",(data)=>{
+    console.log(data)
 })
